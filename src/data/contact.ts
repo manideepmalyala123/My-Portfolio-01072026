@@ -1,9 +1,9 @@
 export const contact = {
   email: "manideepmalyala1997@gmail.com",
 
-  github: "https://github.com/YOUR_GITHUB",
+  github: "https://github.com/manideepmalyala123",
 
-  linkedin: "https://linkedin.com/in/YOUR_LINKEDIN",
+  linkedin: "https://www.linkedin.com/in/malyala-manideep-18385317a/",
 
   location: "Hyderabad, Telangana, India",
 };
