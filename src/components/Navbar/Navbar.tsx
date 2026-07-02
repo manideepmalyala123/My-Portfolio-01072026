@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const menuItems = [
   { label: "About", id: "about" },
@@ -10,6 +11,7 @@ const menuItems = [
 ];
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +57,8 @@ const Navbar = () => {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className="cursor-pointer text-gray-300 hover:text-primary transition"
+                //className="cursor-pointer text-gray-300 hover:text-primary transition"
+                className="text-gray-300 hover:text-primary transition"
               >
                 {item.label}
               </a>
@@ -63,14 +66,55 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <a
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden text-2xl text-white"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+
+        {/* <a
           href="/resume.pdf"
           download="Manideep_Resume.pdf"
           className="rounded-full bg-primary px-7 py-3 font-semibold hover:scale-105 transition"
         >
           Resume
+        </a> */}
+        <a
+          href="/resume.pdf"
+          download="Manideep_Resume.pdf"
+          className="hidden md:block rounded-full bg-primary px-7 py-3 font-semibold hover:scale-105 transition"
+        >
+          Resume
         </a>
       </nav>
+
+      {menuOpen && (
+        <div className="md:hidden glass mt-3 mx-auto w-[92%] rounded-2xl p-6">
+          <ul className="flex flex-col gap-5">
+            {menuItems.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-gray-300 hover:text-primary transition"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+
+            <a
+              href="/resume.pdf"
+              download="Manideep_Resume.pdf"
+              className="bg-primary rounded-full py-3 text-center font-semibold"
+            >
+              Resume
+            </a>
+          </ul>
+        </div>
+      )}
     </motion.header>
   );
 };
